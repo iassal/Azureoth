@@ -4,13 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication;
+=======
+using Azureoth.Database;
+>>>>>>> Database
 
 namespace Azureoth
 {
@@ -31,6 +36,8 @@ namespace Azureoth
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var databaseConnectionString = Configuration.GetConnectionString("DatabaseConnectionString");
+            services.AddDbContext<AzureothDbContext>(options => options.UseSqlServer(databaseConnectionString));
             // Add framework services.
             services.AddMvc();
 

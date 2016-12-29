@@ -1,7 +1,11 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
+<<<<<<< HEAD
       "C:\\Users\\v-youel\\.nuget\\packages"
+=======
+      "C:\\Users\\v-hesaa\\.nuget\\packages"
+>>>>>>> Database
     ]
   }
 }
