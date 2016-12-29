@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Azureoth
 {
@@ -29,6 +33,9 @@ namespace Azureoth
         {
             // Add framework services.
             services.AddMvc();
+
+            services.AddAuthentication(sharedOptions => sharedOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,12 +56,38 @@ namespace Azureoth
 
             app.UseStaticFiles();
 
+            // Configure the OWIN pipeline to use cookie auth.
+            app.UseCookieAuthentication(new CookieAuthenticationOptions());
+
+            // Configure the OWIN pipeline to use OpenID Connect auth.
+            app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
+            {
+                ClientId = Configuration["AzureAD:ClientId"],
+                Authority = String.Format(Configuration["AzureAd:AadInstance"], Configuration["AzureAd:Tenant"]),
+                ResponseType = OpenIdConnectResponseType.IdToken,
+                PostLogoutRedirectUri = Configuration["AzureAd:PostLogoutRedirectUri"],
+                TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                {
+                    ValidateIssuer = false
+                },
+                Events = new OpenIdConnectEvents
+                {
+                    OnRemoteFailure = OnAuthenticationFailed,
+                }
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+        private Task OnAuthenticationFailed(FailureContext context)
+        {
+            context.HandleResponse();
+            context.Response.Redirect("/Home/Error?message=" + context.Failure.Message);
+            return Task.FromResult(0);
         }
     }
 }
