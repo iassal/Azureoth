@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Azureoth.Utility;
+using Azureoth.Database;
 namespace Azureoth.Management
 {
     public static class ApplicationManager

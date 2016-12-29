@@ -38,6 +38,20 @@ namespace Azureoth.Controllers
             }
         }
 
+        [Route("apps/{appId}/schema")]
+        [HttpPut]
+        public ActionResult PutSchema(string appId, [FromBody] Dictionary<string, JsonTable> schema)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return Ok(SchemaManager.UpdateSchema(User.Identity.Name, appId, schema));
+            }
+            else
+            {
+                return Unauthorized();
+            }
+        }
+
 
 
 
