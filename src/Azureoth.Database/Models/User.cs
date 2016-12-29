@@ -7,6 +7,6 @@ namespace Azureoth.Database.Models
 {
     public class User : IEntity
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
     }
 }

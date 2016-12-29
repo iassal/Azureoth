@@ -8,9 +8,5 @@ namespace Azureoth.Controllers
 {
     public class UserController : Controller
     {
-        public  Index()
-        {
-            return "tesT";
-        }
     }
 }
