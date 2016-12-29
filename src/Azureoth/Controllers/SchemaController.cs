@@ -4,17 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Azureoth.Management;
+using Azureoth.Datastructures;
+
 namespace Azureoth.Controllers
 {
     public class SchemaController : Controller
     {
         [Route("apps/{appId}/schema")]
         [HttpGet]
-        public ActionResult GetSchema()
+        public ActionResult GetSchema(string appId)
         {
             if (User.Identity.IsAuthenticated)
             {
-                return Ok(SchemaManager.GetSchema(User.Identity.Name));
+                return Ok(SchemaManager.GetSchema(User.Identity.Name, appId));
             }
             else
             {
@@ -22,27 +24,13 @@ namespace Azureoth.Controllers
             }
         }
 
-        [Route("apps/{appId}")]
-        [HttpGet]
-        public ActionResult GetApp(string appId)
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                return Ok(ApplicationManager.GetUserApp(User.Identity.Name, appId));
-            }
-            else
-            {
-                return Unauthorized();
-            }
-        }
-
-        [Route("apps")]
+        [Route("apps/{appId}/schema")]
         [HttpPost]
-        public ActionResult PostApp([FromBody] UserApplication application)
+        public ActionResult PostSchema(string appId, [FromBody] Dictionary<string, JsonTable> schema)
         {
             if (User.Identity.IsAuthenticated)
             {
-                return Ok(ApplicationManager.AddUserApp(User.Identity.Name, application));
+                return Ok(SchemaManager.AddSchema(User.Identity.Name, appId, schema));
             }
             else
             {
@@ -50,18 +38,8 @@ namespace Azureoth.Controllers
             }
         }
 
-        [Route("apps")]
-        [HttpPut]
-        public ActionResult PutApp([FromBody] UserApplication application)
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                return Ok(ApplicationManager.EditUserApp(User.Identity.Name, application));
-            }
-            else
-            {
-                return Unauthorized();
-            }
-        }
+
+
+
     }
 }

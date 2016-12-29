@@ -2,14 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Azureoth.Datastructures;
 namespace Azureoth.Management
 {
     public static class SchemaManager
     {
-        /*public static List<UserApplication> GetSchema(string userName)
+        public static Dictionary<string, JsonTable> GetSchema(string userName, string appId)
         {
-        }*/
-
+            return new Dictionary<string, JsonTable>();
+        }
+        public static bool AddSchema(string userName, string appId, Dictionary<string, JsonTable> schema)
+        {
+            return true;
+        }
+        public static bool UpdateSchema(string userName, string appId, Dictionary<string, JsonTable> schema)
+        {
+            return true;
+        }
     }
 }
