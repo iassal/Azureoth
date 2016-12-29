@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Azureoth.Datastructures;
 using Azureoth.Management;
 namespace Azureoth.Controllers
 {
-    public class ApplicationController : Controller
+    public class SchemaController : Controller
     {
-        [Route("apps")]
+        [Route("apps/{appId}/schema")]
         [HttpGet]
-        public ActionResult GetApps()
+        public ActionResult GetSchema()
         {
             if (User.Identity.IsAuthenticated)
             {
-                return Ok(ApplicationManager.GetUserApps(User.Identity.Name));
+                return Ok(SchemaManager.GetSchema(User.Identity.Name));
             }
             else
             {

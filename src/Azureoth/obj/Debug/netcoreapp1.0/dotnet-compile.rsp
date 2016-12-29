@@ -207,4 +207,8 @@ C:\Users\v-youel\Documents\Azureoth\src\Azureoth\Startup.cs
 C:\Users\v-youel\Documents\Azureoth\src\Azureoth\Controllers\AccountController.cs
 C:\Users\v-youel\Documents\Azureoth\src\Azureoth\Controllers\ApplicationController.cs
 C:\Users\v-youel\Documents\Azureoth\src\Azureoth\Controllers\HomeController.cs
-C:\Users\v-youel\Documents\Azureoth\src\Azureoth\Controllers\UserController.cs
+C:\Users\v-youel\Documents\Azureoth\src\Azureoth\Controllers\SchemaController.cs
+C:\Users\v-youel\Documents\Azureoth\src\Azureoth\Datastructures\UserApplication.cs
+C:\Users\v-youel\Documents\Azureoth\src\Azureoth\Management\ApplicationManager.cs
+C:\Users\v-youel\Documents\Azureoth\src\Azureoth\Management\SchemaManager.cs
+C:\Users\v-youel\Documents\Azureoth\src\Azureoth\Utility\ParamValidators.cs
