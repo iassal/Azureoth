@@ -13,6 +13,21 @@ namespace Azureoth.Controllers
             return View();
         }
 
+        public IActionResult Test()
+        {
+            return View();
+        }
+
+        public IActionResult Test2()
+        {
+            return View();
+        }
+
+        public IActionResult JsonEditor()
+        {
+            return View();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

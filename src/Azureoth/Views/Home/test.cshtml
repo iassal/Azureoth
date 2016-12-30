@@ -1,0 +1,65 @@
+﻿
+@section Title{
+    Home
+}
+
+<style>
+    .btn-circle {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 12px;
+        line-height: 1.428571429;
+        border-radius: 15px;
+    }
+
+        .btn-circle.btn-lg {
+            width: 50px;
+            height: 50px;
+            padding: 10px 16px;
+            font-size: 18px;
+            line-height: 1.33;
+            border-radius: 25px;
+        }
+
+        .btn-circle.btn-xl {
+            width: 70px;
+            height: 70px;
+            padding: 10px 16px;
+            font-size: 24px;
+            line-height: 1.33;
+            border-radius: 35px;
+        }
+</style>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#">Azureoth</a></li>
+    <li role="presentation" style="float: right;"><a href="#">Ibrahim</a></li>
+</ul>
+
+<div class="container">
+    <h2>My Projects</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Project Name</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < 5; i++)
+            {
+                <tr>
+                    <td><a href="/hoba">Ibrahim</a></td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    <button type="button" class="btn btn-primary" style="width: 100%">+</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
